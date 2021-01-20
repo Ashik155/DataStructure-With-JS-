@@ -49,3 +49,79 @@
 // }
 
 // console.log(selection([2,1,4,3]))
+
+
+//insertion sort 
+// first we will compare the element with half sorted element and determine correct place to go
+
+// const insertionSort = (arr)=>{
+
+    
+//     for(let i=1;i<arr.length;i++){
+//        let currentValue = arr[i]
+//        let j=i-1;
+//        while(j >=0 && arr[j]>currentValue ){
+//            arr[j+1]=arr[j]
+//            j--
+//        }
+//        arr[j+1]=currentValue
+       
+        
+//     }
+    
+//     return arr
+// }
+
+// console.log(insertionSort([1,24,3,12,33]))
+
+
+
+//mergeSort 
+
+//first We will Define Merging of two sorted array...
+
+const mergingSortedArray = (a1,a2)=>{
+    let i=0;
+   let  j=0;
+
+    let res = [];
+
+    while(i<a1.length && j<a2.length){
+     
+        if(a1[i]<=a2[j]){
+           
+            res.push(a1[i])
+            i+=1;
+        }else{
+            res.push(a2[j])
+            j+=1;
+        }
+    }
+    while(i<a1.length){
+        res.push(a1[i])
+        i+=1;
+    }
+    while(j<a2.length){
+        res.push(a2[j])
+        j+=1;
+        
+    }
+    
+    return res
+}
+
+    
+
+const breakingDownArray = (arr)=>{
+
+    if(arr.length <= 1){
+        return arr;
+    }
+    let mid = Math.floor(arr.length/2);
+  let left = breakingDownArray(arr.slice(0,mid))
+  let right = breakingDownArray(arr.slice(mid));
+  return mergingSortedArray(left,right)
+
+}
+
+console.log(breakingDownArray([1,32,5,22,45,736,21,312,12,1213,112]))
